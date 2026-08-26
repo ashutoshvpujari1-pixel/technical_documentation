@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java REST API Client - RestClient</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,#eef6ff,#dcecff);color:#172033;min-height:100vh}.header{background:linear-gradient(135deg,#0b3d91,#1261c9);color:#fff;padding:22px 40px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 5px 18px #164a8a33}.header h1{margin:0;font-size:26px}.badge{background:#ffffff22;border:1px solid #ffffff55;padding:8px 14px;border-radius:20px;font-size:13px}.wrap{max-width:1250px;margin:28px auto;padding:0 22px}.intro{background:#fff;border-radius:16px;padding:20px 24px;margin-bottom:20px;box-shadow:0 8px 25px #23456b18;border-left:5px solid #1261c9}.intro h2{margin:0 0 7px;font-size:21px;color:#0b3d91}.intro p{margin:0;color:#536176}.grid{display:grid;grid-template-columns:1.35fr .75fr;gap:20px}.card{background:#fff;border-radius:16px;padding:22px;box-shadow:0 8px 25px #23456b18}.card h3{margin:0 0 15px;color:#0b3d91;font-size:18px}pre{margin:0;background:#101827;color:#dce7f7;padding:22px;border-radius:12px;overflow:auto;font-size:14px;line-height:1.65;border:1px solid #27364d}.kw{color:#7dd3fc}.type{color:#a7f3d0}.str{color:#fde68a}.method{color:#c4b5fd}.url{color:#86efac}.flow{display:flex;flex-direction:column;gap:11px}.step{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid #dce6f2;border-radius:11px;background:#f8fbff}.num{min-width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#1261c9;color:#fff;font-weight:700;font-size:13px}.step b{display:block;color:#1c2b43;margin-bottom:3px}.step span{font-size:13px;color:#617087}.endpoint{margin-top:18px;padding:15px;border-radius:11px;background:#edf6ff;border:1px solid #c8e0fa;font-family:Consolas,monospace;font-size:13px;color:#0b3d91}.footer{text-align:center;color:#68778d;font-size:12px;padding:20px}@media(max-width:850px){.grid{grid-template-columns:1fr}.header{padding:18px 22px}.wrap{margin:18px auto}}
+</style>
+</head>
+<body>
+<header class="header"><h1>☕ Java REST API Client</h1><div class="badge">Spring Boot • RestClient • POST</div></header>
+<main class="wrap">
+<section class="intro"><h2>Invoking a REST API from Java</h2><p>This example creates an <strong>Employee</strong> object, sends it as JSON using HTTP POST, and maps the API response back to an Employee object.</p></section>
+<section class="grid">
+<div class="card"><h3>Java Client Code</h3>
+<pre><span class="type">RestClient</span> restClient = <span class="type">RestClient</span>.create();
+
+<span class="type">Employee</span> employee = <span class="kw">new</span> <span class="type">Employee</span>();
+employee.<span class="method">setId</span>(101);
+employee.<span class="method">setName</span>(<span class="str">"Anand"</span>);
+employee.<span class="method">setDepartment</span>(<span class="str">"IT"</span>);
+
+<span class="type">Employee</span> response = restClient.<span class="method">post</span>()
+        .<span class="method">uri</span>(<span class="url">"http://localhost:8080/api/employees"</span>)
+        .<span class="method">contentType</span>(MediaType.APPLICATION_JSON)
+        .<span class="method">body</span>(employee)
+        .<span class="method">retrieve</span>()
+        .<span class="method">body</span>(Employee.class);</pre></div>
+<div class="card"><h3>How It Works</h3>
+<div class="flow">
+<div class="step"><div class="num">1</div><div><b>Create RestClient</b><span>Creates the Spring HTTP client.</span></div></div>
+<div class="step"><div class="num">2</div><div><b>Create Employee</b><span>Builds request data with ID, name and department.</span></div></div>
+<div class="step"><div class="num">3</div><div><b>POST Request</b><span>Sends the Employee object to the REST endpoint.</span></div></div>
+<div class="step"><div class="num">4</div><div><b>JSON Content Type</b><span>Spring serializes the object as application/json.</span></div></div>
+<div class="step"><div class="num">5</div><div><b>Retrieve Response</b><span>Reads the HTTP response returned by the server.</span></div></div>
+<div class="step"><div class="num">6</div><div><b>Map Response</b><span>Converts response JSON into Employee.class.</span></div></div>
+</div><div class="endpoint"><strong>POST</strong><br>http://localhost:8080/api/employees</div>
+</div></section></main>
+<footer class="footer">Java REST API Client • Spring RestClient • Employee Service</footer>
+</body></html>

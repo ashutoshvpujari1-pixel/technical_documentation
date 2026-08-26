@@ -1,0 +1,600 @@
+Professional Git Commands HTML Page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional Git Commands Reference Guide">
+  <title>Git Commands Reference Guide</title>
+
+  <style>
+    :root {
+      --primary: #f05032;
+      --primary-dark: #c83d25;
+      --dark: #17202a;
+      --text: #34495e;
+      --muted: #6b7280;
+      --background: #f4f7fb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --code-bg: #1e293b;
+      --code-text: #e2e8f0;
+      --note-bg: #fff7ed;
+      --note-border: #fb923c;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1f2937, #111827);
+      color: white;
+      padding: 70px 20px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      background: rgba(240, 80, 50, 0.18);
+      border-radius: 50%;
+      top: -130px;
+      right: -80px;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      background: rgba(240, 80, 50, 0.12);
+      border-radius: 50%;
+      bottom: -130px;
+      left: -70px;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .git-logo {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
+      background: var(--primary);
+      border-radius: 16px;
+      transform: rotate(45deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(240, 80, 50, 0.3);
+    }
+
+    .git-logo span {
+      transform: rotate(-45deg);
+      font-size: 34px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 1.1rem;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 40px auto 70px;
+    }
+
+    .intro {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .intro strong {
+      color: var(--dark);
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .section-header {
+      padding: 20px 26px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to right, #ffffff, #fafafa);
+    }
+
+    .section-header h2 {
+      margin: 0;
+      color: var(--dark);
+      font-size: 1.35rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: white;
+      border-radius: 9px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .section-body {
+      padding: 24px 26px;
+    }
+
+    .command {
+      margin: 0 0 12px;
+      padding: 15px 18px;
+      background: var(--code-bg);
+      color: var(--code-text);
+      border-radius: 10px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-left: 4px solid var(--primary);
+    }
+
+    .command:last-child {
+      margin-bottom: 0;
+    }
+
+    .command code {
+      font-family: inherit;
+    }
+
+    .label {
+      display: inline-block;
+      margin: 4px 0 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #fee2e2;
+      color: #b91c1c;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      background: var(--note-bg);
+      border-left: 4px solid var(--note-border);
+      border-radius: 8px;
+      color: #7c2d12;
+    }
+
+    .note strong {
+      color: #9a3412;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .workflow-step {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fafafa;
+    }
+
+    .workflow-step h3 {
+      margin: 0 0 8px;
+      color: var(--dark);
+      font-size: 1rem;
+    }
+
+    .workflow-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: #111827;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 50px 16px 45px;
+      }
+
+      .container {
+        width: min(100% - 20px, 1100px);
+        margin-top: 20px;
+      }
+
+      .section-header,
+      .section-body {
+        padding: 18px;
+      }
+
+      .command {
+        font-size: 0.82rem;
+      }
+    }
+
+    @media print {
+      header {
+        background: #111827 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .section {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+
+      body {
+        background: white;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="git-logo">
+        <span>git</span>
+      </div>
+
+      <h1>Git Commands Reference Guide</h1>
+      <p class="subtitle">
+        A professional quick-reference guide for common Git workflows - Created by Ashutosh Pujari
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="intro">
+      <strong>Quick Start:</strong>
+      Run the commands below from your working folder to initialize a Git
+      repository, configure your identity, commit files, connect a remote
+      repository, and manage branches and changes.
+    </div>
+
+    <!-- Repository Setup -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">1</span>
+          Repository Setup
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <pre class="command"><code>git init</code></pre>
+
+        <pre class="command"><code>git config --global user.email "username@gmail.com"</code></pre>
+
+        <pre class="command"><code>git config --global user.name "User Name"</code></pre>
+      </div>
+    </section>
+
+    <!-- Add and Commit -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">2</span>
+          Add, Status &amp; Commit
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <pre class="command"><code>git add .</code></pre>
+
+        <pre class="command"><code>git status</code></pre>
+
+        <pre class="command"><code>git commit -m "Adding files"</code></pre>
+      </div>
+    </section>
+
+    <!-- Remote Repository -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">3</span>
+          Remote Repository &amp; Push
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <pre class="command"><code>git remote add origin https://hithub.com/username/project_name.git</code></pre>
+
+        <pre class="command"><code>git push origin master</code></pre>
+
+        <span class="label">Alternative</span>
+
+        <pre class="command"><code>git push --set--upstream origin master</code></pre>
+      </div>
+    </section>
+
+    <!-- Pull -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">4</span>
+          Pull Changes
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <pre class="command"><code>git pull https://hithub.com/username/project_name.git</code></pre>
+      </div>
+    </section>
+
+    <!-- Branches -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">5</span>
+          Branch Management
+        </h2>
+      </div>
+
+      <div class="section-body">
+
+        <h3>Create a New Branch</h3>
+
+        <pre class="command"><code>git branch &lt;new-branch-name&gt;</code></pre>
+
+        <pre class="command"><code>git branch branch_developer1</code></pre>
+
+        <h3>Delete a Branch</h3>
+
+        <pre class="command"><code>git branch -D &lt;new-branch-name&gt;</code></pre>
+
+        <h3>Go to a New Branch</h3>
+
+        <pre class="command"><code>git checkout &lt;new-branch-name&gt;</code></pre>
+
+        <h3>Show List of Branches</h3>
+
+        <pre class="command"><code>git branch</code></pre>
+
+      </div>
+    </section>
+
+    <!-- Git Log -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">6</span>
+          View Recent Activities
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <pre class="command"><code>git log</code></pre>
+
+        <pre class="command"><code>git log --graph --pretty=oneline</code></pre>
+      </div>
+    </section>
+
+    <!-- Stash -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">7</span>
+          Stash Changes
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <pre class="command"><code>git stash</code></pre>
+
+        <pre class="command"><code>git stash -u</code></pre>
+
+        <pre class="command"><code>git stash pop</code></pre>
+      </div>
+    </section>
+
+    <!-- Revert -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">8</span>
+          Revert a Commit
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <pre class="command"><code>git revert &lt;commit_id&gt;</code></pre>
+
+        <div class="note">
+          <strong>Note:</strong>
+          Use <code>git log</code> to obtain the required commit ID.
+        </div>
+      </div>
+    </section>
+
+    <!-- Diff -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">9</span>
+          Compare Commits
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <pre class="command"><code>git diff &lt;commit_id1&gt; &lt;commit_id2&gt;</code></pre>
+
+        <div class="note">
+          <strong>Note:</strong>
+          Commit IDs can be obtained by running <code>git log</code>.
+        </div>
+      </div>
+    </section>
+
+    <!-- Merge -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">10</span>
+          Merge Branches
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <pre class="command"><code>git merge</code></pre>
+
+        <pre class="command"><code>git merge &lt;source-branch&gt;</code></pre>
+
+        <div class="note">
+          <strong>Workflow:</strong>
+          First checkout to the <code>master</code> branch. Then run
+          <code>git merge &lt;feature-branch&gt;</code>.
+        </div>
+
+        <pre class="command"><code>git checkout master
+git merge &lt;feature-branch&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- Rebase -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">11</span>
+          Rebase Branches
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <pre class="command"><code>git rebase</code></pre>
+
+        <pre class="command"><code>git rebase &lt;source-branch&gt;</code></pre>
+
+        <div class="note">
+          <strong>Note:</strong>
+          Rebasing can be used to bring the latest changes from the
+          <code>master</code> branch into a feature branch.
+        </div>
+
+        <pre class="command"><code>git checkout feature_branch
+git rebase master</code></pre>
+      </div>
+    </section>
+
+    <!-- Common Workflow -->
+    <section class="section">
+      <div class="section-header">
+        <h2>
+          <span class="number">12</span>
+          Common Git Workflow
+        </h2>
+      </div>
+
+      <div class="section-body">
+        <div class="workflow">
+
+          <div class="workflow-step">
+            <h3>Initialize</h3>
+            <p>Create a Git repository using <code>git init</code>.</p>
+          </div>
+
+          <div class="workflow-step">
+            <h3>Stage</h3>
+            <p>Add files with <code>git add .</code>.</p>
+          </div>
+
+          <div class="workflow-step">
+            <h3>Commit</h3>
+            <p>Save changes using <code>git commit</code>.</p>
+          </div>
+
+          <div class="workflow-step">
+            <h3>Push</h3>
+            <p>Upload commits to the remote repository.</p>
+          </div>
+
+          <div class="workflow-step">
+            <h3>Branch</h3>
+            <p>Create isolated development branches.</p>
+          </div>
+
+          <div class="workflow-step">
+            <h3>Merge / Rebase</h3>
+            <p>Integrate changes between branches.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>Git Commands Reference Guide</strong>
+    <br>
+    Keep this page as a quick reference for everyday Git operations.
+  </footer>
+
+</body>
+</html>

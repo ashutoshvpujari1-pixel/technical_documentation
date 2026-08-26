@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RestMan REST API Invocation Guide</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #eef6ff, #dcecff);
+        color: #172033;
+        overflow: hidden;
+    }
+    .page {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    header {
+        height: 72px;
+        flex-shrink: 0;
+        background: linear-gradient(90deg, #073b78, #1261a8);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 28px;
+        box-shadow: 0 3px 12px rgba(0,0,0,.18);
+    }
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+    }
+    .logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background: rgba(255,255,255,.16);
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 19px;
+        border: 1px solid rgba(255,255,255,.3);
+    }
+    header h1 { margin: 0; font-size: 23px; }
+    header p { margin: 3px 0 0; font-size: 12px; opacity: .82; }
+    .badge {
+        background: #e8f4ff;
+        color: #07559a;
+        padding: 7px 13px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 12px;
+    }
+    main {
+        flex: 1;
+        min-height: 0;
+        padding: 13px 22px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 13px;
+    }
+    .card {
+        background: rgba(255,255,255,.94);
+        border: 1px solid #cfe0f3;
+        border-radius: 12px;
+        box-shadow: 0 5px 18px rgba(28,74,120,.10);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+    .card-head {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 9px 13px;
+        color: white;
+        font-weight: 750;
+        font-size: 14px;
+    }
+    .get { background: linear-gradient(90deg,#168a57,#21aa70); }
+    .post { background: linear-gradient(90deg,#9b5b00,#c77b0a); }
+    .put { background: linear-gradient(90deg,#3157a4,#4b73ca); }
+    .delete { background: linear-gradient(90deg,#a52d2d,#d14343); }
+    .method {
+        padding: 4px 8px;
+        border-radius: 5px;
+        background: rgba(255,255,255,.2);
+        font-size: 12px;
+    }
+    .content {
+        padding: 10px 13px;
+        overflow: hidden;
+    }
+    .instruction {
+        font-size: 11.5px;
+        color: #566579;
+        margin-bottom: 7px;
+    }
+    .row {
+        display: flex;
+        gap: 7px;
+        align-items: center;
+        margin: 6px 0;
+    }
+    .label {
+        min-width: 76px;
+        font-size: 11px;
+        font-weight: 700;
+        color: #46556a;
+    }
+    .url {
+        flex: 1;
+        background: #f4f8fc;
+        border: 1px solid #d4e0ec;
+        border-radius: 6px;
+        padding: 6px 8px;
+        font-family: Consolas, monospace;
+        font-size: 11px;
+        color: #174e83;
+        white-space: nowrap;
+    }
+    .code {
+        margin-top: 6px;
+        background: #172333;
+        color: #e9f3ff;
+        border-radius: 7px;
+        padding: 8px 10px;
+        font-family: Consolas, monospace;
+        font-size: 10.5px;
+        line-height: 1.4;
+        white-space: pre;
+    }
+    .hint {
+        display: inline-block;
+        margin-top: 6px;
+        background: #eef7ff;
+        color: #17619c;
+        border-radius: 5px;
+        padding: 4px 7px;
+        font-size: 10.5px;
+        font-weight: 650;
+    }
+    footer {
+        height: 38px;
+        flex-shrink: 0;
+        background: #082e5c;
+        color: #dbeaff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        letter-spacing: .2px;
+    }
+    @media (max-width: 800px) {
+        body { overflow: auto; }
+        .page { height: auto; min-height: 100vh; }
+        main { grid-template-columns: 1fr; }
+        footer { height: 35px; }
+    }
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+    <div class="brand">
+        <div class="logo">API</div>
+        <div>
+            <h1>RestMan — Spring Boot REST API Guide</h1>
+            <p>How to invoke Employee CRUD REST APIs using RestMan</p>
+        </div>
+    </div>
+    <div class="badge">localhost:8080</div>
+</header>
+
+<main>
+    <section class="card">
+        <div class="card-head get"><span class="method">GET</span> Retrieve Employee Details</div>
+        <div class="content">
+            <div class="instruction">In RestMan, select <b>GET</b>, enter the URL, then click <b>Send</b>.</div>
+            <div class="row"><span class="label">All Employees</span><div class="url">http://localhost:8080/api/employees</div></div>
+            <div class="row"><span class="label">Single Employee</span><div class="url">http://localhost:8080/api/employees/101</div></div>
+            <span class="hint">Response: JSON containing employee details</span>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="card-head post"><span class="method">POST</span> Create Employee</div>
+        <div class="content">
+            <div class="instruction">Select <b>POST</b> in RestMan and add the JSON body below.</div>
+            <div class="row"><span class="label">URL</span><div class="url">http://localhost:8080/api/employees</div></div>
+            <div class="row"><span class="label">Header</span><div class="url">Content-Type: application/json</div></div>
+            <div class="code">{
+  "id": 103,
+  "name": "Anil",
+  "department": "IT",
+  "salary": 75000
+}</div>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="card-head put"><span class="method">PUT</span> Update Employee</div>
+        <div class="content">
+            <div class="instruction">Select <b>PUT</b> in RestMan and send the updated employee JSON.</div>
+            <div class="row"><span class="label">URL</span><div class="url">http://localhost:8080/api/employees/103</div></div>
+            <div class="row"><span class="label">Header</span><div class="url">Content-Type: application/json</div></div>
+            <div class="code">{
+  "id": 103,
+  "name": "Anil Kumar",
+  "department": "IT",
+  "salary": 77000
+}</div>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="card-head delete"><span class="method">DELETE</span> Delete Employee</div>
+        <div class="content">
+            <div class="instruction">Select <b>DELETE</b> in RestMan, enter the employee URL, then click <b>Send</b>.</div>
+            <div class="row"><span class="label">URL</span><div class="url">http://localhost:8080/api/employees/101</div></div>
+            <span class="hint">Result: Employee 101 will be deleted</span>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Spring Boot REST API • Employee CRUD • Test GET / POST / PUT / DELETE requests using RestMan
+</footer>
+</div>
+</body>
+</html>
