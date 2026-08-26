@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional document index created by Ashutosh Pujari">
+  <title>Document Index | Ashutosh Pujari</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #eef6ff, #f8fbff);
+      color: #1f2937;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(135deg, #0b3d91, #1456b8);
+      color: white;
+      padding: 28px 7%;
+      box-shadow: 0 4px 14px rgba(0,0,0,.15);
+    }
+    .header-inner {
+      max-width: 1150px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+    h1 { margin: 0 0 6px; font-size: 30px; }
+    .creator { margin: 0; opacity: .9; font-size: 15px; }
+    .contact { text-align: right; font-size: 14px; line-height: 1.7; }
+    .contact a { color: #fff; text-decoration: none; }
+    main { max-width: 1150px; margin: 42px auto; padding: 0 25px; }
+    .intro { text-align: center; margin-bottom: 30px; }
+    .intro h2 { margin: 0 0 8px; color: #0b3d91; font-size: 27px; }
+    .intro p { margin: 0; color: #64748b; }
+    .documents {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 22px;
+      border: 1px solid #dbe7f5;
+      box-shadow: 0 7px 20px rgba(30, 64, 175, .08);
+      transition: .2s ease;
+      display: flex;
+      flex-direction: column;
+      min-height: 180px;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(30,64,175,.15); }
+    .icon {
+      width: 46px; height: 46px; border-radius: 11px;
+      background: #e8f1ff; color: #0b3d91;
+      display: grid; place-items: center; font-size: 22px;
+      margin-bottom: 15px;
+    }
+    .card h3 { margin: 0 0 8px; font-size: 18px; color: #172554; word-break: break-word; }
+    .card p { margin: 0 0 18px; color: #64748b; font-size: 14px; flex: 1; }
+    .open {
+      display: inline-block; text-align: center;
+      background: #0b3d91; color: white; text-decoration: none;
+      padding: 10px 15px; border-radius: 8px; font-weight: 600; font-size: 14px;
+    }
+    .open:hover { background: #082f70; }
+    footer {
+      margin-top: 50px; padding: 22px 7%;
+      background: #0f172a; color: #cbd5e1; text-align: center; font-size: 13px;
+    }
+    footer strong { color: white; }
+    @media (max-width: 700px) {
+      .header-inner { flex-direction: column; text-align: center; }
+      .contact { text-align: center; }
+      h1 { font-size: 25px; }
+      .documents { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <h1>Professional Document Index</h1>
+      <p class="creator">Created &amp; Maintained by <strong>Ashutosh Pujari</strong></p>
+    </div>
+    <div class="contact">
+      <strong>Contact Us</strong><br>
+      📧 <a href="mailto:ashutoshvpujari@rediffmail.com">ashutoshvpujari@rediffmail.com</a><br>
+      📱 <a href="tel:+919860985354">9860985354</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <h2>Technical Documentation</h2>
+    <p>Select a document below to open it. All documents are maintained under the same root folder.</p>
+  </section>
+
+  <section class="documents">
+    <article class="card">
+      <div class="icon">⌘</div>
+      <h3>Git Commands – Most Used</h3>
+      <p>Quick reference guide containing commonly used Git commands.</p>
+      <a class="open" href="./Git_Commands_Most_Used.html">Open Document →</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">☕</div>
+      <h3>Java REST Client API Guide</h3>
+      <p>Guide for invoking REST APIs using Java REST Client code.</p>
+      <a class="open" href="./java_restclient_api_guide.html">Open Document →</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">⇄</div>
+      <h3>RestMan REST API Guide</h3>
+      <p>Step-by-step guide for invoking REST APIs using RestMan.</p>
+      <a class="open" href="./restman_rest_api_guide.html">Open Document →</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">DOC</div>
+      <h3>RestMan Usage – REST API</h3>
+      <p>Editable Word document containing the RestMan REST API usage guide.</p>
+      <a class="open" href="./RestMan_Usage_To_Call_REST_API.docx">Open Word Document →</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">PDF</div>
+      <h3>RestMan Usage – REST API</h3>
+      <p>PDF version of the RestMan REST API usage guide.</p>
+      <a class="open" href="./RestMan_Usage_To_Call_REST_API.pdf">Open PDF Document →</a>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <strong>Ashutosh Pujari</strong> &nbsp;|&nbsp;
+  Email: ashutoshvpujari@rediffmail.com &nbsp;|&nbsp;
+  Mobile: 9860985354
+  <br>
+  <span>© 2026 Technical Documentation Portal. All Rights Reserved.</span>
+</footer>
+
+</body>
+</html>
